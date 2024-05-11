@@ -7,6 +7,7 @@
 void test_write(const char *function_name, ssize_t local_write(int, const void *, size_t))
 {
     ssize_t return_value;
+    (void)function_name;
     //char file_path[100];
     //sprintf(file_path, "%s%s", test_path, function_name);
 

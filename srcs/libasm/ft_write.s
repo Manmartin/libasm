@@ -15,7 +15,7 @@ ft_write:
     syscall
     cmp rax, 0
     jge return
-    ;; If write syscall returns a negative value, errno is set to that value and -1 is returned
+    ;; If write syscall returns a negative value, errno is set to that value (in positive) and -1 is returned
     ;; rdi is used to store return value of write syscall
     mov rdi, rax
     neg rdi

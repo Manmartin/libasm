@@ -1,1 +1,2 @@
+%define SYSCALL_READ  0
 %define SYSCALL_WRITE 1

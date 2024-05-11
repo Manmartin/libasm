@@ -7,7 +7,6 @@
 
 int main(void)
 {
-
     // FT_WRITE TEST
     puts(BLUE"TEST: ft_write"RESET);
     test_write("write", write);

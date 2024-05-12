@@ -10,17 +10,22 @@
 ;; rdi = fd
 ;; rsi = buf
 ;; rdx = count
+
 ft_write:
     mov rax, SYSCALL_WRITE
     syscall
-    cmp rax, 0
-    jge return
+    mov rdi, rax
+    call __errno_location
+    cmp rdi, 0
+    jl error
+    mov qword [rax], 0
+    mov rax, rdi
+    ret
+
+error:
     ;; If write syscall returns a negative value, errno is set to that value (in positive) and -1 is returned
     ;; rdi is used to store return value of write syscall
-    mov rdi, rax
     neg rdi
-    call __errno_location
     mov [rax], rdi
     mov rax, -1
-return:
     ret

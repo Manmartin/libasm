@@ -27,8 +27,9 @@ OBJS            =   $(SRCS:.s=.o)
 # Tests
 TESTS_NAME          	=   tests
 TESTS_FILES         	=   tester.c \
-					    	test_write.c
-TESTS_CASES_FILES		=	$(addprefix $(TESTS_LOGS_FOLDER), bad_permission)
+                            tester_aux.c \
+					    	test_write.c \
+							test_read.c
 TESTS_SRCS      		=   $(addprefix $(TESTS_FOLDER), $(TESTS_FILES))
 TESTS_OBJS      		=   $(TESTS_SRCS:.c=.o)
 
@@ -37,17 +38,21 @@ TESTS_OBJS      		=   $(TESTS_SRCS:.c=.o)
 
 all: $(NAME)
 test: $(TESTS_NAME)
-	./$(TESTS_NAME)
+	./$(TESTS_NAME) 2> $(TESTS_LOGS_FOLDER)/log
 
 $(NAME): $(OBJS)
 	$(AR) $(ARFLAGS) $@ $^
 
-$(TESTS_CASES_FILES):
+$(TESTS_LOGS_FOLDER):
 	mkdir -p $(TESTS_LOGS_FOLDER)
-	touch $(TESTS_CASES_FILES)
-	chmod 333 $(TESTS_CASES_FILES)
 
-$(TESTS_NAME): $(NAME) $(TESTS_OBJS) $(TESTS_CASES_FILES)
+	echo Works! > $(TESTS_LOGS_FOLDER)/good_permission_read
+	chmod 700 $(TESTS_LOGS_FOLDER)/good_permission_read
+
+	touch $(TESTS_LOGS_FOLDER)/bad_permission_read
+	chmod 333 $(TESTS_LOGS_FOLDER)/bad_permission_read
+
+$(TESTS_NAME): $(NAME) $(TESTS_OBJS) $(TESTS_LOGS_FOLDER)
 	$(CC) $(CFLAGS) $(TESTS_OBJS) $(NAME) -o $@
 
 

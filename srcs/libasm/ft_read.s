@@ -14,18 +14,14 @@
 ft_read:
     mov rax, SYSCALL_READ
     syscall
-    mov rdi, rax
-    call __errno_location
-    cmp rdi, 0
-    jl error
-    mov qword [rax], 0
-    mov rax, rdi
-    ret
-
-error:
+    cmp rax, 0
+    jge return
     ;; If read syscall returns a negative value, errno is set to that value (in positive) and -1 is returned
     ;; rdi is used to store return value of read syscall    
+    mov rdi, rax
     neg rdi
+    call __errno_location
     mov [rax], rdi
     mov rax, -1
+return:
     ret

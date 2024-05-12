@@ -18,7 +18,8 @@ LIBASM_FOLDER           =   $(addprefix $(SRCS_FOLDER), libasm/)
 
 # Library
 NAME            =   libasm.a
-LIBASM_FILES    =   ft_write.s \
+LIBASM_FILES    =   ft_strlen.s \
+                    ft_write.s \
                     ft_read.s
 SYSCALL_FILE    =   $(addprefix $(LIBASM_FOLDER), syscalls.inc)
 SRCS            =   $(addprefix $(LIBASM_FOLDER), $(LIBASM_FILES))
@@ -28,6 +29,7 @@ OBJS            =   $(SRCS:.s=.o)
 TESTS_NAME          	=   tests
 TESTS_FILES         	=   tester.c \
                             tester_aux.c \
+							test_strlen.c \
 					    	test_write.c \
 							test_read.c
 TESTS_SRCS      		=   $(addprefix $(TESTS_FOLDER), $(TESTS_FILES))
@@ -38,7 +40,7 @@ TESTS_OBJS      		=   $(TESTS_SRCS:.c=.o)
 
 all: $(NAME)
 test: $(TESTS_NAME)
-	./$(TESTS_NAME) 2> $(TESTS_LOGS_FOLDER)/log
+	./$(TESTS_NAME) 2> $(TESTS_LOGS_FOLDER)log
 
 $(NAME): $(OBJS)
 	$(AR) $(ARFLAGS) $@ $^

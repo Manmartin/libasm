@@ -1,6 +1,6 @@
 # Compilation variables
 CC              =   gcc
-CFLAGS          =   -Wall -Wextra -Werror -no-pie -I $(LIBASM_FOLDER) -Dtest_path=\"./$(TESTS_FOLDER)logs/\"
+CFLAGS          =   -g3 -Wall -Wextra -Werror -no-pie -I $(LIBASM_FOLDER) -Dtest_path=\"./$(TESTS_FOLDER)logs/\"
 
 NASM            =   nasm
 NASMFLAGS       =   -f elf64 -p $(SYSCALL_FILE)
@@ -19,6 +19,7 @@ LIBASM_FOLDER           =   $(addprefix $(SRCS_FOLDER), libasm/)
 # Library
 NAME            =   libasm.a
 LIBASM_FILES    =   ft_strlen.s \
+                    ft_strcpy.s \
                     ft_write.s \
                     ft_read.s
 SYSCALL_FILE    =   $(addprefix $(LIBASM_FOLDER), syscalls.inc)
@@ -30,6 +31,7 @@ TESTS_NAME          	=   tests
 TESTS_FILES         	=   tester.c \
                             tester_aux.c \
 							test_strlen.c \
+                            test_strcpy.c \
 					    	test_write.c \
 							test_read.c
 TESTS_SRCS      		=   $(addprefix $(TESTS_FOLDER), $(TESTS_FILES))

@@ -14,6 +14,12 @@ int main(void)
     test_strlen("ft_strlen", ft_strlen);
     puts("");
 
+    // FT_STRCPY TEST
+    puts(BLUE"TEST: ft_strcpy"RESET);
+    test_strcpy("strcpy", strcpy);
+    test_strcpy("ft_strcpy", ft_strcpy);
+    puts("");
+
     // FT_WRITE TEST
     puts(BLUE"TEST: ft_write"RESET);
     test_write("write", write);
@@ -26,5 +32,4 @@ int main(void)
     test_read("ft_read", ft_read);
     puts("");
 
-    return 0;
 }

@@ -41,7 +41,7 @@ void test_strlen(const char *function_name, size_t local_strlen(const char *s))
 
     return_value = local_strlen("1167591119016088066105425238057431785454036646709131879052390500");
     assert(return_value == 64);
-    put_str(2, "Test 4 -> ");
+    put_str(2, "Test 5 -> ");
     perror(function_name);
     put_str(1, GREEN"✔️"RESET);
     errno = 0;

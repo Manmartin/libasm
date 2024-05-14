@@ -9,6 +9,7 @@
 
 ft_strcpy:
     mov rdx, rdi ;; Save dst value to return it later
+    cld ;; set direction flag to 0
 loop: 
     lodsb ;; Load one byte from rsi into al (current source character) and increment rsi
     stosb ;; Load one byte from al into rdi and increment rdi

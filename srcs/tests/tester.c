@@ -20,6 +20,13 @@ int main(void)
     test_strcpy("ft_strcpy", ft_strcpy);
     puts("");
 
+    // FT_STRCMP TEST
+    puts(BLUE"TEST: ft_strcmp"RESET);
+    test_strcmp("strcmp   ", strcmp);
+    test_strcmp("ft_strcmp", ft_strcmp);
+    puts("");
+
+
     // FT_WRITE TEST
     puts(BLUE"TEST: ft_write"RESET);
     test_write("write", write);

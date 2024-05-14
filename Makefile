@@ -20,6 +20,7 @@ LIBASM_FOLDER           =   $(addprefix $(SRCS_FOLDER), libasm/)
 NAME            =   libasm.a
 LIBASM_FILES    =   ft_strlen.s \
                     ft_strcpy.s \
+                    ft_strcmp.s \
                     ft_write.s \
                     ft_read.s
 SYSCALL_FILE    =   $(addprefix $(LIBASM_FOLDER), syscalls.inc)
@@ -32,6 +33,7 @@ TESTS_FILES         	=   tester.c \
                             tester_aux.c \
 							test_strlen.c \
                             test_strcpy.c \
+                            test_strcmp.c \
 					    	test_write.c \
 							test_read.c
 TESTS_SRCS      		=   $(addprefix $(TESTS_FOLDER), $(TESTS_FILES))

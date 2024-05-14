@@ -10,13 +10,13 @@ int main(void)
 {
     // FT_STRLEN TEST
     puts(BLUE"TEST: ft_strlen"RESET);
-    test_strlen("strlen", strlen);
+    test_strlen("strlen   ", strlen);
     test_strlen("ft_strlen", ft_strlen);
     puts("");
 
     // FT_STRCPY TEST
     puts(BLUE"TEST: ft_strcpy"RESET);
-    test_strcpy("strcpy", strcpy);
+    test_strcpy("strcpy   ", strcpy);
     test_strcpy("ft_strcpy", ft_strcpy);
     puts("");
 
@@ -29,13 +29,13 @@ int main(void)
 
     // FT_WRITE TEST
     puts(BLUE"TEST: ft_write"RESET);
-    test_write("write", write);
+    test_write("write   ", write);
     test_write("ft_write", ft_write);
     puts("");
 
     // FT_READ TEST
     puts(BLUE"TEST: ft_read"RESET);
-    test_read("read", read);
+    test_read("read   ", read);
     test_read("ft_read", ft_read);
     puts("");
 

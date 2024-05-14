@@ -14,27 +14,21 @@ void test_strcpy(const char *function_name, char* local_strcpy(char *dest, const
     put_str(1, ": ");
 
     return_value = local_strcpy(s2, s1);
-    assert(return_value == s2);
-    assert(strcmp(s1, s2) == 0);
     put_str(2, "Test 1 -> ");
     perror(function_name);
-    put_str(1, GREEN"✔️"RESET);
+    put_str(1, return_value == s2 &&  strcmp(s1, s2) == 0 ? GREEN" OK"RESET : RED" KO"RESET);
     errno = 0;
 
     return_value = local_strcpy(s1, "");
-    assert(return_value == s1);
-    assert(strcmp(s1, "") == 0);
     put_str(2, "Test 2 -> ");
     perror(function_name);
-    put_str(1, GREEN"✔️"RESET);
+    put_str(1, return_value == s1 &&  strcmp(s1, "") == 0 ? GREEN" OK"RESET : RED" KO"RESET);
     errno = 0;
 
     return_value = local_strcpy(s2, s1);
-    assert(return_value == s2);
-    assert(strcmp(s2, "") == 0);
     put_str(2, "Test 3 -> ");
     perror(function_name);
-    put_str(1, GREEN"✔️"RESET);
+    put_str(1, return_value == s2 &&  strcmp(s2, "") == 0 ? GREEN" OK"RESET : RED" KO"RESET);
     errno = 0;
 
     return_value = local_strcpy(s1, "1167591119016088066105425238057431785454036646709131879052390500");
@@ -42,15 +36,13 @@ void test_strcpy(const char *function_name, char* local_strcpy(char *dest, const
     assert(strcmp(s1, "1167591119016088066105425238057431785454036646709131879052390500") == 0);
     put_str(2, "Test 4 -> ");
     perror(function_name);
-    put_str(1, GREEN"✔️"RESET);
+    put_str(1, return_value == s1 &&  strcmp(s1, "1167591119016088066105425238057431785454036646709131879052390500") == 0 ? GREEN" OK"RESET : RED" KO"RESET);
     errno = 0;
 
     return_value = local_strcpy(s2, s1);
-    assert(return_value == s2);
-    assert(strcmp(s2, s1) == 0);
     put_str(2, "Test 5 -> ");
     perror(function_name);
-    put_str(1, GREEN"✔️"RESET);
+    put_str(1, return_value == s2 &&  strcmp(s1, s2) == 0 ? GREEN" OK"RESET : RED" KO"RESET);
     errno = 0;
 
     put_str(1, "\n");

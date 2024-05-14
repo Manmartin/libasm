@@ -25,18 +25,16 @@ void test_read(const char *function_name, ssize_t local_read(int fd, void *buf, 
 
     // Tests with valid fd
     return_value = local_read(fd, buffer, 20);
-    assert(return_value == 7);
-    assert(strcmp("Works!\n", buffer) == 0);
     put_str(2, "Test 1 -> ");
     perror(function_name);
-    put_str(1, GREEN"✔️"RESET);
+    put_str(1, return_value == 7 && strcmp("Works!\n", buffer) == 0 ? GREEN" OK"RESET : RED" KO"RESET);
     errno = 0;
 
     return_value = local_read(fd, buffer, 10);
     assert(return_value == 0);
     put_str(2, "Test 2 -> ");
     perror(function_name);
-    put_str(1, GREEN"✔️"RESET);
+    put_str(1, return_value == 0 ? GREEN" OK"RESET : RED" KO"RESET);
     close(fd);
     errno = 0;
 
@@ -47,25 +45,22 @@ void test_read(const char *function_name, ssize_t local_read(int fd, void *buf, 
     errno = 0;
 
     return_value = local_read(fd, buffer, 10);
-    assert(return_value == -1);
     put_str(2, "Test 3 -> ");
     perror(function_name);
-    put_str(1, GREEN"✔️"RESET);
+    put_str(1, return_value == -1 ? GREEN" OK"RESET : RED" KO"RESET);
     close(fd);
     errno = 0;
 
     return_value = local_read(-1, buffer, 10);
-    assert(return_value == -1);
     put_str(2, "Test 4 -> ");
     perror(function_name);
-    put_str(1, GREEN"✔️"RESET);
+    put_str(1, return_value == -1 ? GREEN" OK"RESET : RED" KO"RESET);
     errno = 0;
 
     return_value = local_read(-1, buffer, 10);
-    assert(return_value == -1);
     put_str(2, "Test 5 -> ");
     perror(function_name);
-    put_str(1, GREEN"✔️"RESET);
+    put_str(1, return_value == -1 ? GREEN" OK"RESET : RED" KO"RESET);
     errno = 0;
 
     put_str(1, "\n");

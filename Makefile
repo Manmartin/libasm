@@ -50,13 +50,13 @@ $(NAME): $(OBJS)
 	$(AR) $(ARFLAGS) $@ $^
 
 $(TESTS_LOGS_FOLDER):
-	mkdir -p $(TESTS_LOGS_FOLDER)
+	@ mkdir -p $(TESTS_LOGS_FOLDER)
 
-	echo Works! > $(TESTS_LOGS_FOLDER)/good_permission_read
-	chmod 700 $(TESTS_LOGS_FOLDER)/good_permission_read
+	@ echo Works! > $(TESTS_LOGS_FOLDER)/good_permission_read
+	@ chmod 700 $(TESTS_LOGS_FOLDER)/good_permission_read
 
-	touch $(TESTS_LOGS_FOLDER)/bad_permission_read
-	chmod 333 $(TESTS_LOGS_FOLDER)/bad_permission_read
+	@ touch $(TESTS_LOGS_FOLDER)/bad_permission_read
+	@ chmod 333 $(TESTS_LOGS_FOLDER)/bad_permission_read
 
 $(TESTS_NAME): $(NAME) $(TESTS_OBJS) $(TESTS_LOGS_FOLDER)
 	$(CC) $(CFLAGS) $(TESTS_OBJS) $(NAME) -o $@

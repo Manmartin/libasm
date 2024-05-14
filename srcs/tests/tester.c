@@ -8,6 +8,7 @@
 
 int main(void)
 {
+    puts(YELLOW"-----  MANDATORY PART  -----\n"RESET);
     // FT_STRLEN TEST
     puts(BLUE"TEST: ft_strlen"RESET);
     test_strlen("strlen   ", strlen);
@@ -37,6 +38,12 @@ int main(void)
     puts(BLUE"TEST: ft_read"RESET);
     test_read("read   ", read);
     test_read("ft_read", ft_read);
+    puts("");
+
+    // FT_STRDUP TEST
+    puts(BLUE"TEST: ft_strdup"RESET);
+    test_strdup("strdup   ",  strdup);
+    test_strdup("ft_strdup", ft_strdup);
     puts("");
 
 }

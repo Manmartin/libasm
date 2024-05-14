@@ -22,7 +22,8 @@ LIBASM_FILES    =   ft_strlen.s \
                     ft_strcpy.s \
                     ft_strcmp.s \
                     ft_write.s \
-                    ft_read.s
+                    ft_read.s \
+					ft_strdup.s
 SYSCALL_FILE    =   $(addprefix $(LIBASM_FOLDER), syscalls.inc)
 SRCS            =   $(addprefix $(LIBASM_FOLDER), $(LIBASM_FILES))
 OBJS            =   $(SRCS:.s=.o)
@@ -35,7 +36,8 @@ TESTS_FILES         	=   tester.c \
                             test_strcpy.c \
                             test_strcmp.c \
 					    	test_write.c \
-							test_read.c
+							test_read.c \
+							test_strdup.c
 TESTS_SRCS      		=   $(addprefix $(TESTS_FOLDER), $(TESTS_FILES))
 TESTS_OBJS      		=   $(TESTS_SRCS:.c=.o)
 

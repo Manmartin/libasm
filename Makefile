@@ -57,6 +57,7 @@ OBJS_BONUS			=	$(SRCS_BONUS:.s=.o)
 # Tests
 TESTS_NAME_BONUS        =   tests_bonus
 TESTS_FILES_BONUS       =   tester_bonus.c \
+                            tester_aux_bonus.c \
 							test_atoi_base_bonus.c
 TESTS_SRCS_BONUS      	=   $(addprefix $(TESTS_FOLDER_BONUS), $(TESTS_FILES_BONUS))
 TESTS_OBJS_BONUS      	=   $(TESTS_SRCS_BONUS:.c=.o)

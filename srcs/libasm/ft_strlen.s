@@ -7,7 +7,7 @@
 ;; rdi = s
 
 ft_strlen:
-    mov rax, 0
+    xor rax, rax
 loop:
     cmp byte [rdi+rax], 0
     je return

@@ -1,6 +1,6 @@
 # Compilation variables
-CC              =   gcc
-CFLAGS          =   -g3 -Wall -Wextra -Werror -no-pie -I $(LIBASM_FOLDER) -I $(LIBASM_FOLDER_BONUS) -Dtest_path=\"./$(TESTS_FOLDER)logs/\"
+CC              =	gcc 
+CFLAGS          =   -Wall -Wextra -Werror -no-pie -I $(LIBASM_FOLDER) -I $(LIBASM_FOLDER_BONUS) -Dtest_path=\"./$(TESTS_FOLDER)logs/\"
 
 NASM            =   nasm
 NASMFLAGS       =   -f elf64 -p $(SYSCALL_FILE)
@@ -53,7 +53,6 @@ LIBASM_FILES_BONUS	=	ft_atoi_base_bonus.s
 SRCS_BONUS          =	$(addprefix $(LIBASM_FOLDER_BONUS), $(LIBASM_FILES_BONUS))
 OBJS_BONUS			=	$(SRCS_BONUS:.s=.o)
 
-# Tests
 # Tests
 TESTS_NAME_BONUS        =   tests_bonus
 TESTS_FILES_BONUS       =   tester_bonus.c \

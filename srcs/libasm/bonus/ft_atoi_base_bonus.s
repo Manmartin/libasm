@@ -2,13 +2,16 @@
 
     section .text
 
+%define nstr rdi
+%define base rsi
+
 ;; Iterate base string and search for non-valid or repeated characters
 ;; Also check if base string len is more than 1
 %macro validate_base 0
     xor rdx, rdx
 validate_base_loop:
-    ;; Load current character in rcx registry (cl) and check if is end of string
-    lea r8, [rsi+rdx]
+    ;; Load current character in rcx registry (cl) and check if is '\0'
+    lea r8, [base+rdx]
     mov cl, [r8]
     cmp cl, 0
     je validate_base_return
@@ -42,11 +45,87 @@ validate_base_return:
     jl error
 %endmacro
 
+;; Remove all spaces (as defined in isspace) in nstr
+%macro clean_spaces 0
+clean_spaces_loop:
+    mov cl, [nstr]
+    cmp cl, ' '
+    sete r8b
+    sub cl, 9
+    cmp cl, 4
+    setbe cl
+    or r8b, cl
+    cmp r8b, 0
+    je clean_spaces_end
+    inc nstr
+    jmp clean_spaces_loop
+clean_spaces_end:
+%endmacro
+
+;; Get sign value (1 or -1)
+%macro get_sign 0
+    mov cl, [nstr]
+    cmp cl, '+'
+    sete r8b
+    cmp cl, '-'
+    sete cl
+    or r8b, cl ;; Check if current character is '+' or '-' and store result in cl
+
+    ;; If '-' found, set rdx to -1, otherwise to 1
+    neg cl
+    cmp cl, 0
+    jne get_sign_if_neg
+    mov cl, 1
+get_sign_if_neg:
+    movsx ecx, cl
+
+    cmp r8b, 0 ;; If sign found, increase nstr pointer by one
+    je get_sign_end
+    inc nstr
+get_sign_end:
+%endmacro
+
+
+;; Get numeric value of character stored in r8b and return it in r9
+%macro get_char_value 0
+    mov r9, base
+get_char_value_loop:
+    cmp byte [r9], 0
+    je get_char_value_end
+    cmp r8b, [r9]
+    je get_char_value_end
+    inc r9
+    jmp get_char_value_loop
+get_char_value_end:
+    sub r9, base
+%endmacro
+
+;; eax = resultado, edx = len ecx = sign r8 r9
+;; int ft_atoi_base(char *nstr, char *base)
 ft_atoi_base:
-    validate_base
-    xor rax, rax
+    xor eax, eax ;; Set return value to 0
+
+    validate_base ;; Check if base is valid and set edx to base's len
+    clean_spaces ;; remove all spaces at the start of nstr
+    get_sign ;; Get sign value and, if found, remove one '+' or '-' from nstr
+
+ft_atoi_base_loop:
+    movzx r8d, byte [nstr]
+    cmp r8d, 0 ;; If '\0', end function
+    je ft_atoi_base_end
+
+    get_char_value ;; Get value of character in base
+    cmp r9d, edx ;; If character is not in base, end function
+    je ft_atoi_base_end
+
+    imul eax, edx
+    add eax, r9d
+    inc nstr
+    jmp ft_atoi_base_loop
+
+ft_atoi_base_end:
+    imul eax, ecx ;; multiply result by sign
     ret
 
 error:
-    xor rax, rax
     ret

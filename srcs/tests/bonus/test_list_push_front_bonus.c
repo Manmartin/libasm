@@ -19,24 +19,13 @@ static void check_list(t_list *list, int *numbers)
     put_str(1, GREEN" OK"RESET);
 }
 
-static void free_list(t_list *list)
-{
-    t_list *aux;
-    while (list != NULL)
-    {
-        aux = list;
-        list = list->next;
-        free(aux);
-    }
-}
-
 void test_list_push_front(void)
 {
-    t_list *list = { 0 };
+    t_list *list = NULL;
     int content[5] = { 42, 22, 56, 2, 5};
     int content2[5] = { 42, 22, 56, 2, 5};
 
-    put_str(1, "ft_list_push_front");
+    put_str(1, "Valid cases");
     put_str(1, ":");
 
     ft_list_push_front(&list, &(content[0]));

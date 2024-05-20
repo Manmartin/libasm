@@ -1,5 +1,6 @@
-    global ft_list_push_front
     extern malloc
+    global ft_list_push_front
+
     section .text
 
 %define begin_list rdi

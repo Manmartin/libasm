@@ -13,7 +13,14 @@ int main(void)
     test_atoi_base();
     puts("");
 
-    puts(BLUE"TEST: ft_list_push_front_bonus" RESET);
+    // FT_LIST_PUSH_FRONT TEST
+    puts(BLUE"TEST: ft_list_push_front" RESET);
     test_list_push_front();
     puts("");
+
+    // FT_LIST_SIZE
+    puts(BLUE"TEST: ft_list_size" RESET);
+    test_list_size();
+    puts("");
+
 }

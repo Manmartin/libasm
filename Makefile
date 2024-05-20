@@ -50,7 +50,8 @@ TESTS_FOLDER_BONUS	=   $(addprefix $(TESTS_FOLDER), bonus/)
 # Library
 NAME_BONUS 			=	libasm_bonus.a
 LIBASM_FILES_BONUS	=	ft_atoi_base_bonus.s \
-						ft_list_push_front_bonus.s
+						ft_list_push_front_bonus.s \
+						ft_list_size_bonus.s
 SRCS_BONUS          =	$(addprefix $(LIBASM_FOLDER_BONUS), $(LIBASM_FILES_BONUS))
 OBJS_BONUS			=	$(SRCS_BONUS:.s=.o)
 
@@ -59,7 +60,8 @@ TESTS_NAME_BONUS        =   tests_bonus
 TESTS_FILES_BONUS       =   tester_bonus.c \
                             tester_aux_bonus.c \
 							test_atoi_base_bonus.c \
-							test_list_push_front_bonus.c
+							test_list_push_front_bonus.c \
+							test_list_size_bonus.c
 TESTS_SRCS_BONUS      	=   $(addprefix $(TESTS_FOLDER_BONUS), $(TESTS_FILES_BONUS))
 TESTS_OBJS_BONUS      	=   $(TESTS_SRCS_BONUS:.c=.o)
 

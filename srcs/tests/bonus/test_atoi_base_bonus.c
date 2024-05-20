@@ -6,7 +6,6 @@ void test_atoi_base(void)
     char *str = "";
     char *base = "";
     int return_value;
-
     put_str(1, "ft_atoi_base");
     put_str(1, ":");
     
@@ -42,7 +41,7 @@ void test_atoi_base(void)
     base = "aba";
     return_value = ft_atoi_base(str, base);
     put_str(1, return_value == 0 ? GREEN" OK"RESET : RED" KO"RESET);
-    
+
     base = "aab";
     return_value = ft_atoi_base(str, base);
     put_str(1, return_value == 0 ? GREEN" OK"RESET : RED" KO"RESET);
@@ -54,12 +53,12 @@ void test_atoi_base(void)
     str = "        \t\r\n\v\f -cddda";
     return_value = ft_atoi_base(str, base);
     put_str(1, return_value == 0 ? GREEN" OK"RESET : RED" KO"RESET);
-    
+
     base = "ab";
     str = "        \t\r\n\v\f -";
     return_value = ft_atoi_base(str, base);
     put_str(1, return_value == 0 ? GREEN" OK"RESET : RED" KO"RESET);
-    
+
     base = "ab";
     str = "+1234";
     return_value = ft_atoi_base(str, base);
@@ -79,12 +78,12 @@ void test_atoi_base(void)
     put_str(1, return_value == -1 ? GREEN" OK"RESET : RED" KO"RESET);
 
     base = "0123456789";
-    str = "-2147483648";
+    str = "        \t\r\n\v\f +---+--+--+2147483648";
     return_value = ft_atoi_base(str, base);
     put_str(1, return_value == -2147483648 ? GREEN" OK"RESET : RED" KO"RESET);
     
     base = "0123456789";
-    str = "+2147483647";
+    str = "        \t\r\n\v\f --+--+--2147483647";
     return_value = ft_atoi_base(str, base);
     put_str(1, return_value == 2147483647 ? GREEN" OK"RESET : RED" KO"RESET);
 
@@ -92,7 +91,6 @@ void test_atoi_base(void)
     str = "2A";
     return_value = ft_atoi_base(str, base);
     put_str(1, return_value == 42 ? GREEN" OK"RESET : RED" KO"RESET);
-
 
     put_str(1, "\n");
 }

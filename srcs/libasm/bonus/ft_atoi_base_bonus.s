@@ -64,24 +64,25 @@ clean_spaces_end:
 
 ;; Get sign value (1 or -1)
 %macro get_sign 0
-    mov cl, [nstr]
-    cmp cl, '+'
+    mov ecx, 1
+get_sign_loop:
+    mov r9b, [nstr]
+    cmp r9b, '+'
     sete r8b
-    cmp cl, '-'
-    sete cl
-    or r8b, cl ;; Check if current character is '+' or '-' and store result in cl
+    cmp r9b, '-'
+    sete r9b
+    or r8b, r9b ;; Check if current character is '+' or '-' and store result in cl
 
-    ;; If '-' found, set rdx to -1, otherwise to 1
-    neg cl
-    cmp cl, 0
-    jne get_sign_if_neg
-    mov cl, 1
+    ;; If '-' found, negate sign
+    cmp r9b, 0
+    je get_sign_if_neg
+    neg ecx
 get_sign_if_neg:
-    movsx ecx, cl
 
     cmp r8b, 0 ;; If sign found, increase nstr pointer by one
     je get_sign_end
     inc nstr
+    jmp get_sign_loop
 get_sign_end:
 %endmacro
 
@@ -100,7 +101,6 @@ get_char_value_end:
     sub r9, base
 %endmacro
 
-;; eax = resultado, edx = len ecx = sign r8 r9
 ;; int ft_atoi_base(char *nstr, char *base)
 ft_atoi_base:
     xor eax, eax ;; Set return value to 0
@@ -111,8 +111,6 @@ ft_atoi_base:
 
 ft_atoi_base_loop:
     movzx r8d, byte [nstr]
-    cmp r8d, 0 ;; If '\0', end function
-    je ft_atoi_base_end
 
     get_char_value ;; Get value of character in base
     cmp r9d, edx ;; If character is not in base, end function
@@ -125,7 +123,5 @@ ft_atoi_base_loop:
 
 ft_atoi_base_end:
     imul eax, ecx ;; multiply result by sign
-    ret
-
 error:
     ret

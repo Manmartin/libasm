@@ -12,4 +12,8 @@ int main(void)
     puts(BLUE"TEST: ft_atoi_base" RESET);
     test_atoi_base();
     puts("");
+
+    puts(BLUE"TEST: ft_list_push_front_bonus" RESET);
+    test_list_push_front();
+    puts("");
 }

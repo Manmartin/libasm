@@ -6,9 +6,8 @@ void test_atoi_base(void)
     char *str = "";
     char *base = "";
     int return_value;
-    put_str(1, "ft_atoi_base");
-    put_str(1, ":");
-    
+    put_str(1, "Invalid base:");
+
     // ### Test invalid base ###
 
     // Invalid len
@@ -46,9 +45,10 @@ void test_atoi_base(void)
     return_value = ft_atoi_base(str, base);
     put_str(1, return_value == 0 ? GREEN" OK"RESET : RED" KO"RESET);
 
-    put_str(1, " |");
+    put_str(1, "\n");
 
     // ### Test invalid str ###
+    put_str(1, "Invalid str: ");
     base = "ab";
     str = "        \t\r\n\v\f -cddda";
     return_value = ft_atoi_base(str, base);
@@ -64,9 +64,10 @@ void test_atoi_base(void)
     return_value = ft_atoi_base(str, base);
     put_str(1, return_value == 0 ? GREEN" OK"RESET : RED" KO"RESET);
 
-    put_str(1, " |");
+    put_str(1, "\n");
 
     // ### Test valid cases ###
+    put_str(1, "Valid cases: ");
     base = "abc";
     str = "";
     return_value = ft_atoi_base(str, base);
@@ -91,6 +92,11 @@ void test_atoi_base(void)
     str = "2A";
     return_value = ft_atoi_base(str, base);
     put_str(1, return_value == 42 ? GREEN" OK"RESET : RED" KO"RESET);
+
+    base = "0123456789ABCDEF";
+    str = "       \t\r\n\v\f --+--+--0";
+    return_value = ft_atoi_base(str, base);
+    put_str(1, return_value == 0 ? GREEN" OK"RESET : RED" KO"RESET);
 
     put_str(1, "\n");
 }

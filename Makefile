@@ -1,6 +1,6 @@
 # Compilation variables
 CC              =	gcc 
-CFLAGS          =   -Wall -Wextra -Werror -no-pie -I $(LIBASM_FOLDER) -I $(LIBASM_FOLDER_BONUS) -Dtest_path=\"./$(TESTS_FOLDER)logs/\"
+CFLAGS          =   -Wall -Wextra -Werror -std=c2x -no-pie -I $(LIBASM_FOLDER) -I $(LIBASM_FOLDER_BONUS) -Dtest_path=\"./$(TESTS_FOLDER)logs/\"
 
 NASM            =   nasm
 NASMFLAGS       =   -f elf64 -p $(SYSCALL_FILE)
@@ -49,7 +49,8 @@ TESTS_FOLDER_BONUS	=   $(addprefix $(TESTS_FOLDER), bonus/)
 
 # Library
 NAME_BONUS 			=	libasm_bonus.a
-LIBASM_FILES_BONUS	=	ft_atoi_base_bonus.s
+LIBASM_FILES_BONUS	=	ft_atoi_base_bonus.s \
+						ft_list_push_front_bonus.s
 SRCS_BONUS          =	$(addprefix $(LIBASM_FOLDER_BONUS), $(LIBASM_FILES_BONUS))
 OBJS_BONUS			=	$(SRCS_BONUS:.s=.o)
 
@@ -57,7 +58,8 @@ OBJS_BONUS			=	$(SRCS_BONUS:.s=.o)
 TESTS_NAME_BONUS        =   tests_bonus
 TESTS_FILES_BONUS       =   tester_bonus.c \
                             tester_aux_bonus.c \
-							test_atoi_base_bonus.c
+							test_atoi_base_bonus.c \
+							test_list_push_front_bonus.c
 TESTS_SRCS_BONUS      	=   $(addprefix $(TESTS_FOLDER_BONUS), $(TESTS_FILES_BONUS))
 TESTS_OBJS_BONUS      	=   $(TESTS_SRCS_BONUS:.c=.o)
 

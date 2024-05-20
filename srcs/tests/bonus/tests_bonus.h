@@ -12,5 +12,6 @@ void put_str(int fd, const char *s);
 
 // Tests
 void test_atoi_base(void);
+void test_list_push_front(void);
 
 #endif

@@ -22,8 +22,8 @@ static void check_list(t_list *list, int *numbers)
 void test_list_push_front(void)
 {
     t_list *list = NULL;
-    int content[5] = { 42, 22, 56, 2, 5};
-    int content2[5] = { 42, 22, 56, 2, 5};
+    int content[5] = { 42, 22, 56, 2, 5 };
+    int content2[5] = { 42, 22, 56, 2, 5 };
 
     put_str(1, "Valid cases");
     put_str(1, ":");

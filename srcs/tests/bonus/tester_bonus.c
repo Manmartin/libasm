@@ -23,4 +23,9 @@ int main(void)
     test_list_size();
     puts("");
 
+    // FT_LIST_SORT
+    puts(BLUE"TEST: ft_list_sort" RESET);
+    test_list_sort();
+    puts("");
+
 }

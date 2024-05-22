@@ -18,9 +18,10 @@ ft_read:
     jge return
     ;; If read syscall returns a negative value, errno is set to that value (in positive) and -1 is returned
     ;; rdi is used to store return value of read syscall    
-    mov rdi, rax
-    neg rdi
+    neg rax
+    push rax
     call __errno_location
+    pop rdi
     mov [rax], rdi
     mov rax, -1
 return:

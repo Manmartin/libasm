@@ -5,7 +5,7 @@
 void test_list_size(void)
 {
     t_list *list = NULL;
-    int content[5] = { 42, 22, 56, 2, 5};
+    int content[5] = { 42, 22, 56, 2, 5 };
     int return_value;
 
     put_str(1, "Valid cases");

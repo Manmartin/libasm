@@ -17,5 +17,6 @@ void free_list(t_list *list);
 void test_atoi_base(void);
 void test_list_push_front(void);
 void test_list_size(void);
+void test_list_sort(void);
 
 #endif

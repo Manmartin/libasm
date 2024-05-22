@@ -1,5 +1,5 @@
 #include "tests_bonus.h"
-#include <libasm_bonus.h>
+#include <libasm.h>
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>

@@ -1,5 +1,5 @@
 #include "tests_bonus.h"
-#include <libasm_bonus.h>
+#include <libasm.h>
 #include <stdio.h>
 void test_atoi_base(void)
 {

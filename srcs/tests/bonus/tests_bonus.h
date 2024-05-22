@@ -7,7 +7,7 @@
 # define YELLOW  "\033[33m"
 # define BLUE    "\033[34m"
 
-# include <libasm_bonus.h>
+# include <libasm.h>
 
 // Aux functions
 void put_str(int fd, const char *s);

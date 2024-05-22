@@ -2,7 +2,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/types.h>
-#include <libasm_bonus.h>
+#include <libasm.h>
 #include "tests_bonus.h"
 
 int main(void)

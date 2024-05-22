@@ -1,5 +1,5 @@
 #include "tests_bonus.h"
-#include <libasm_bonus.h>
+#include <libasm.h>
 #include <stdlib.h>
 
 static void check_list(t_list *list, int *numbers)

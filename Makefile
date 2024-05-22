@@ -1,6 +1,6 @@
 # Compilation variables
 CC              =	gcc 
-CFLAGS          =   -Wall -Wextra -Werror -std=c2x -no-pie -I $(LIBASM_FOLDER) -I $(LIBASM_FOLDER_BONUS) -Dtest_path=\"./$(TESTS_FOLDER)logs/\"
+CFLAGS          =   -Wall -Wextra -Werror -std=c2x -no-pie -I $(LIBASM_FOLDER) -Dtest_path=\"./$(TESTS_FOLDER)logs/\"
 
 NASM            =   nasm
 NASMFLAGS       =   -f elf64 -p $(SYSCALL_FILE)
@@ -48,7 +48,6 @@ LIBASM_FOLDER_BONUS	=	$(addprefix $(LIBASM_FOLDER), bonus/)
 TESTS_FOLDER_BONUS	=   $(addprefix $(TESTS_FOLDER), bonus/)
 
 # Library
-NAME_BONUS 			=	libasm_bonus.a
 LIBASM_FILES_BONUS	=	ft_atoi_base_bonus.s \
 						ft_list_push_front_bonus.s \
 						ft_list_size_bonus.s \
@@ -71,7 +70,6 @@ TESTS_OBJS_BONUS      	=   $(TESTS_SRCS_BONUS:.c=.o)
 	$(NASM) $(NASMFLAGS) $< -o $@
 
 all: $(NAME)
-bonus: $(NAME_BONUS)
 
 test: $(TESTS_NAME)
 	./$(TESTS_NAME) 2> $(TESTS_LOGS_FOLDER)log
@@ -82,8 +80,8 @@ testb: $(TESTS_NAME_BONUS)
 $(NAME): $(OBJS)
 	$(AR) $(ARFLAGS) $@ $^
 
-$(NAME_BONUS): $(OBJS_BONUS)
-	$(AR) $(ARFLAGS) $@ $^
+bonus: $(OBJS) $(OBJS_BONUS)
+	$(AR) $(ARFLAGS) $(NAME) $^
 
 $(TESTS_LOGS_FOLDER):
 	@ mkdir -p $(TESTS_LOGS_FOLDER)
@@ -97,8 +95,8 @@ $(TESTS_LOGS_FOLDER):
 $(TESTS_NAME): $(NAME) $(TESTS_OBJS) $(TESTS_LOGS_FOLDER)
 	$(CC) $(CFLAGS) $(TESTS_OBJS) $(NAME) -o $@
 
-$(TESTS_NAME_BONUS): $(NAME_BONUS) $(TESTS_OBJS_BONUS) $(TESTS_LOGS_FOLDER)
-	$(CC) $(CFLAGS) $(TESTS_OBJS_BONUS) $(NAME_BONUS) -o $@
+$(TESTS_NAME_BONUS): bonus $(TESTS_OBJS_BONUS) $(TESTS_LOGS_FOLDER)
+	$(CC) $(CFLAGS) $(TESTS_OBJS_BONUS) $(NAME) -o $@
 
 clean:
 	$(RM) $(NAME_BONUS) $(OBJS) $(OBJS_BONUS) $(TESTS_OBJS) $(TESTS_OBJS_BONUS) $(TESTS_NAME) $(TESTS_NAME_BONUS) $(TESTS_LOGS_FOLDER)

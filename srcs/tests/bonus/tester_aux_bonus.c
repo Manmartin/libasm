@@ -1,6 +1,6 @@
 #include <unistd.h>
 #include <stdlib.h>
-#include <libasm_bonus.h>
+#include <libasm.h>
 
 void put_str(int fd, const char *s)
 {

@@ -44,6 +44,7 @@ TESTS_OBJS      		=   $(TESTS_SRCS:.c=.o)
 
 # BONUS
 # Folders
+NAME_BONUS 			= 	.bonus
 LIBASM_FOLDER_BONUS	=	$(addprefix $(LIBASM_FOLDER), bonus/)
 TESTS_FOLDER_BONUS	=   $(addprefix $(TESTS_FOLDER), bonus/)
 
@@ -70,6 +71,7 @@ TESTS_OBJS_BONUS      	=   $(TESTS_SRCS_BONUS:.c=.o)
 	$(NASM) $(NASMFLAGS) $< -o $@
 
 all: $(NAME)
+bonus: $(NAME_BONUS)
 
 test: $(TESTS_NAME)
 	./$(TESTS_NAME) 2> $(TESTS_LOGS_FOLDER)log
@@ -80,8 +82,9 @@ testb: $(TESTS_NAME_BONUS)
 $(NAME): $(OBJS)
 	$(AR) $(ARFLAGS) $@ $^
 
-bonus: $(OBJS) $(OBJS_BONUS)
+$(NAME_BONUS): $(OBJS) $(OBJS_BONUS)
 	$(AR) $(ARFLAGS) $(NAME) $^
+	touch $(NAME_BONUS)
 
 $(TESTS_LOGS_FOLDER):
 	@ mkdir -p $(TESTS_LOGS_FOLDER)
@@ -95,7 +98,7 @@ $(TESTS_LOGS_FOLDER):
 $(TESTS_NAME): $(NAME) $(TESTS_OBJS) $(TESTS_LOGS_FOLDER)
 	$(CC) $(CFLAGS) $(TESTS_OBJS) $(NAME) -o $@
 
-$(TESTS_NAME_BONUS): bonus $(TESTS_OBJS_BONUS) $(TESTS_LOGS_FOLDER)
+$(TESTS_NAME_BONUS): $(NAME_BONUS) $(TESTS_OBJS_BONUS) $(TESTS_LOGS_FOLDER)
 	$(CC) $(CFLAGS) $(TESTS_OBJS_BONUS) $(NAME) -o $@
 
 clean:

@@ -1,6 +1,6 @@
 # Compilation variables
 CC              =	gcc 
-CFLAGS          =   -Wall -Wextra -Werror -std=c2x -no-pie -I $(LIBASM_FOLDER) -Dtest_path=\"./$(TESTS_FOLDER)logs/\"
+CFLAGS          =   -fsanitize=address -Wall -Wextra -Werror -std=c2x -no-pie -I $(LIBASM_FOLDER) -Dtest_path=\"./$(TESTS_FOLDER)logs/\"
 
 NASM            =   nasm
 NASMFLAGS       =   -f elf64 -p $(SYSCALL_FILE)
@@ -52,7 +52,8 @@ TESTS_FOLDER_BONUS	=   $(addprefix $(TESTS_FOLDER), bonus/)
 LIBASM_FILES_BONUS	=	ft_atoi_base_bonus.s \
 						ft_list_push_front_bonus.s \
 						ft_list_size_bonus.s \
-						ft_list_sort_bonus.s
+						ft_list_sort_bonus.s \
+						ft_list_remove_if_bonus.s
 SRCS_BONUS          =	$(addprefix $(LIBASM_FOLDER_BONUS), $(LIBASM_FILES_BONUS))
 OBJS_BONUS			=	$(SRCS_BONUS:.s=.o)
 
@@ -63,7 +64,8 @@ TESTS_FILES_BONUS       =   tester_bonus.c \
 							test_atoi_base_bonus.c \
 							test_list_push_front_bonus.c \
 							test_list_size_bonus.c \
-							test_list_sort_bonus.c
+							test_list_sort_bonus.c \
+							test_list_remove_if_bonus.c
 TESTS_SRCS_BONUS      	=   $(addprefix $(TESTS_FOLDER_BONUS), $(TESTS_FILES_BONUS))
 TESTS_OBJS_BONUS      	=   $(TESTS_SRCS_BONUS:.c=.o)
 
@@ -84,7 +86,7 @@ $(NAME): $(OBJS)
 
 $(NAME_BONUS): $(OBJS) $(OBJS_BONUS)
 	$(AR) $(ARFLAGS) $(NAME) $^
-	touch $(NAME_BONUS)
+	@ touch $(NAME_BONUS)
 
 $(TESTS_LOGS_FOLDER):
 	@ mkdir -p $(TESTS_LOGS_FOLDER)

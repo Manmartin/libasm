@@ -28,4 +28,9 @@ int main(void)
     test_list_sort();
     puts("");
 
+    // FT_LIST_REMOVE_IF
+    puts(BLUE"TEST: ft_list_remove_if" RESET);
+    test_list_remove_if();
+    puts("");
+
 }

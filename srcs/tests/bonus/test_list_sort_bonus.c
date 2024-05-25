@@ -77,18 +77,9 @@ static void check_list_ints(t_list *list, int *numbers, int len)
         put_str(1, GREEN" OK"RESET);
 }
 
-int my_strcmp(char *s1, char *s2)
-{
-    printf("s1 = %s\n", s1);
-    printf("s2 = %s\n", s2);
-    int r = strcmp(s1, s2);
-    printf("%i\n", r);
-    return r;
-}
+static int cmp_chars(char *s1, char *s2) { return (unsigned char)*s1 - (unsigned char )*s2; }
 
-int cmp_chars(char *s1, char *s2) { return (unsigned char)*s1 - (unsigned char )*s2; }
-
-int cmp_ints(int *n1, int *n2)
+static int cmp_ints(int *n1, int *n2)
 {
     if (*n1 == *n2)
         return 0;
